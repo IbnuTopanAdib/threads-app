@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useInput from '../hooks/useInput';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const LoginForm = ({ onLogin }) => {
   const [email, onEmailChange] = useInput('');
