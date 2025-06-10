@@ -48,7 +48,7 @@ const InputThread = () => {
         onChange={handleCategoryChange}        required
       />
       <TextArea
-        label="Tuliskan isi diskusi..."
+        label="Tuliskan isi diskusi.."
         value={body}
         onChange={handleBodyChange}
         required
