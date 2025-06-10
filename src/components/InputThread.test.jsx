@@ -6,7 +6,7 @@ import InputThread from './InputThread';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { asyncAddThreadActionCreator } from '../states/threads/action';
-
+import { MemoryRouter } from 'react-router-dom';
 
 vi.mock('react-redux', () => ({
   useDispatch: vi.fn(),
@@ -29,8 +29,12 @@ describe('InputThread component', () => {
     cleanup();
   });
 
+  const renderWithRouter = (component) => {
+    return render(<MemoryRouter>{component}</MemoryRouter>);
+  };
+
   it('should render input and button', async () => {
-    render(<InputThread />);
+    renderWithRouter(<InputThread />);
     const titleInput = await screen.getByPlaceholderText('Judul');
     const categoryInput = await screen.getByPlaceholderText('Kategori');
     const body = await screen.getByPlaceholderText('Tuliskan isi diskusi...');
@@ -43,7 +47,7 @@ describe('InputThread component', () => {
   });
 
   it('should handle title, category, and body typing correctly', async () => {
-    render(<InputThread />);
+    renderWithRouter(<InputThread />);
     const titleInput = await screen.getByPlaceholderText('Judul');
     const categoryInput = await screen.getByPlaceholderText('Kategori');
     const body = await screen.getByPlaceholderText('Tuliskan isi diskusi...');
@@ -65,8 +69,8 @@ describe('InputThread component', () => {
 
     const mockThreadAction = { type: 'ADD_THREAD', payload: 'mock' };
     asyncAddThreadActionCreator.mockReturnValue(mockThreadAction);
-
-    render(<InputThread />);
+    
+    renderWithRouter(<InputThread />);
 
     const titleInput = await screen.getByPlaceholderText('Judul');
     const categoryInput = await screen.getByPlaceholderText('Kategori');
