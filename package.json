@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
+    "e2e": "cypress run",
     "ci:test": "vitest --no-watch && start-server-and-test dev http-get://localhost:5173 e2e",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
