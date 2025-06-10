@@ -23,7 +23,7 @@ const InputComment = ({ threadId }) => {
     <form onSubmit={handleSubmitComment}>
       <TextArea
         name="comment"
-        label="Tulis komentarmu di sini..."
+        label="Tulis komentarmu di sini.."
         required
         value={comment}
         onChange={handleCommentChange}
