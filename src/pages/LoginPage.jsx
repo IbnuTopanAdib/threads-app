@@ -3,7 +3,7 @@ import LoginForm from '../components/LoginForm';
 import Branding from '../components/Branding';
 import { useDispatch } from 'react-redux';
 import { asyncSetAuthUser } from '../states/authUser/action';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
