@@ -10,12 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3  # Updated to v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3  # Updated to v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm install and test
-        run: |
-          npm install
-          npm run ci:test
+          node-version: 18  # Specify version directly (recommended)
+          cache: 'npm'  # Add caching for faster installs
+
+      - name: Install dependencies
+        run: npm ci  # Use ci for clean installs in CI
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run tests
+        run: npm run ci:test
+
+      # Optional: Add artifact upload if test results need to be saved
+      - name: Upload test results
+        if: always()  # Run even if tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: |
+            test-results/
+            coverage/
